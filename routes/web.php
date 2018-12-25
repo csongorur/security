@@ -11,4 +11,8 @@
 |
 */
 
+Route::get('/', ['as' => 'pages.index', 'uses' => 'PagesController@index']);
 
+Route::get('/comments', ['as' => 'comments', 'uses' => 'CommentsController@index']);
+Route::post('/comment/store', ['as' => 'comments.store', 'uses' => 'CommentsController@store']);
+Route::get('/comment/{comment}/delete', ['as' => 'comments.delete', 'uses' => 'CommentsController@delete']);

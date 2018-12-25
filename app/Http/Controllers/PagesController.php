@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -13,7 +14,10 @@ class PagesController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::all();
+        return view('pages.index')->with([
+            'comments' => $comments
+        ]);
     }
 
     /**
