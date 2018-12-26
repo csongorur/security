@@ -7,13 +7,41 @@ use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function index()
     {
         $comments = Comment::all();
 
-        return view('comments.index')->with([
+        $view = view('comments.index')->with([
             'comments' => $comments
         ]);
+
+        $header = [];
+
+        /*$header = [
+            'Content-Security-Policy' => 'default-src \'self\''
+        ];*/
+
+        return response($view, 200, $header);
+    }
+
+    public function indexPell()
+    {
+        $comments = Comment::all();
+
+        $view = view('comments.indexPell')->with([
+            'comments' => $comments
+        ]);
+
+        $header = [];
+
+        /*$header = [
+            'Content-Security-Policy' => 'default-src \'self\''
+        ];*/
+
+        return response($view, 200, $header);
     }
 
     public function store(Request $request)
@@ -22,8 +50,16 @@ class CommentsController extends Controller
             'body' => 'required'
         ]);
 
+        $body = $request->get('body');
+
+        /*if (preg_match('/<script>/', $request->get('body'))) {
+            abort(404);
+        }*/
+
+        //$body = preg_replace('/<script>/', '', $request->get('body'));
+
         $comment = new Comment([
-            'body' => $request->get('body')
+            'body' => $body
         ]);
 
         $comment->save();

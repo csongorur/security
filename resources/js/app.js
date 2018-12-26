@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.Pell = require('pell');
 
 /**
  * The following block of code may be used to automatically register your

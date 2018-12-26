@@ -11,10 +11,13 @@
 <div class="mt-5">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="btn btn-primary" href="{{ route('comments') }}">Comments</a></li>
+            <li class="nav-item"><a class="btn btn-primary" href="{{ route('comments') }}">XSS - Comments</a></li>
+            <li class="nav-item ml-3"><a class="btn btn-primary" href="{{ route('comments.pell') }}">XSS - Comments with Pell</a></li>
         </ul>
     </nav>
     @yield('content')
 </div>
+<script src="{{ mix('js/app.js') }}"></script>
+@stack('scripts')
 </body>
 </html>
